@@ -1,17 +1,17 @@
-import commonjs from '@rollup/plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
-import resolve from '@rollup/plugin-node-resolve';
-import typescript from 'rollup-plugin-typescript2';
-import pkg from './package.json';
+import pkg from './package.json'
+import resolve from '@rollup/plugin-node-resolve'
+import typescript from 'rollup-plugin-typescript2'
 
 export default {
   external: ['react', 'react-dom'],
-  input: 'index.tsx',
+  input   : 'index.tsx',
 
   output: {
     exports: 'named',
-    file: pkg.main,
-    format: 'cjs',
+    file   : pkg.main,
+    format : 'cjs',
   },
 
   plugins: [
@@ -23,9 +23,10 @@ export default {
     }),
 
     typescript({
+      clean                    : true,
+      exclude                  : ['node_modules/**', '**/__tests__/**'],
       rollupCommonJSResolveHack: true,
-      exclude: ['node_modules/**', '**/__tests__/**'],
-      clean: true,
     }),
   ],
-};
+}
+
